@@ -5,7 +5,7 @@ namespace RedPanda.Project.UI
 {
     public interface IPromoView
     {
-        void LoadItems(IReadOnlyList<IPromoModel> models);
+        public void ShowItemsGroup(string label, IList<IPromoModel> model);
         void SetMoney(float amount);
     }
 }

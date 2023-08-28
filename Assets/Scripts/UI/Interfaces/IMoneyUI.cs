@@ -3,6 +3,6 @@
     public interface IMoneyUI
     {
         void Set(float count);
-        void UpdateCount(float count);
+        void UpdateAmount(float count);
     }
 }

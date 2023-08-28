@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b76fd53859343a4a83632166518a7f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promoRowUIPrefab: {fileID: 5273721034381981189, guid: 52448e97cbcc1ea4e95362cc21178f11, type: 3}
   _rowsParent: {fileID: 5641155047451710559}
   _moneyUI: {fileID: 780722352823269258}
 --- !u!1 &2605733420379148035
@@ -407,10 +406,10 @@ RectTransform:
   m_Father: {fileID: 1098573822704949552}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -178}
-  m_SizeDelta: {x: 1080, y: 1650}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -180}
+  m_SizeDelta: {x: -40.000015, y: -280}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1648596002505855132
 CanvasRenderer:

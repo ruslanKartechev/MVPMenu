@@ -1,5 +1,4 @@
 using Grace.DependencyInjection;
-using RedPanda.Project.Interfaces;
 using RedPanda.Project.Presenters;
 using UnityEngine;
 
@@ -10,12 +9,6 @@ namespace RedPanda.Project.UI
         [SerializeField] private UnityEngine.UI.Button _button;
         private ILobbyPresenter _presenter;
         
-        private void Awake()
-        {
-            //Example for services
-            //var promoService = Container.Locate<IPromoService>();
-            //UIService.Close();
-        }
 
         private void Start()
         {

@@ -1,5 +1,4 @@
 ﻿using Grace.DependencyInjection.Attributes;
-using RedPanda.Project.Interfaces;
 using RedPanda.Project.Services.Interfaces;
 
 namespace RedPanda.Project.Presenters

@@ -18,7 +18,7 @@ namespace RedPanda.Project.UI
             _text.text = count.ToString();
         }
 
-        public void UpdateCount(float count)
+        public void UpdateAmount(float count)
         {
             Set(count);
             _scalable.DOKill();

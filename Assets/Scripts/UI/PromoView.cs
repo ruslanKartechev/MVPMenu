@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Grace.DependencyInjection;
-using RedPanda.Project.Data;
 using RedPanda.Project.Interfaces;
 using RedPanda.Project.Presenters;
 using RedPanda.Project.Services.Interfaces;
-using RedPanda.Project.Utils;
 using UnityEngine;
 
 namespace RedPanda.Project.UI
@@ -13,10 +11,10 @@ namespace RedPanda.Project.UI
     {
         [SerializeField] private Transform _rowsParent;
         [SerializeField] private MoneyUI _moneyUI;
-        private List<PromoRowUI> _promoRows;
-        private PromoPresenter _presenter;
+        private List<PromoRowUI> _promoRows = new List<PromoRowUI>();
         private IUIService _uiService;
-
+        private PromoPresenter _presenter;
+        
         
         private void Start()
         {
@@ -24,25 +22,12 @@ namespace RedPanda.Project.UI
             _presenter = new PromoPresenter(this, Container);
         }
 
-        public void LoadItems(IReadOnlyList<IPromoModel> models)
+        public void ShowItemsGroup(string label, IList<IPromoModel> model)
         {
-            var modelsByType = new Dictionary<PromoType, IList<IPromoModel>>();
-            foreach (var model in models)
-            {
-                if (modelsByType.ContainsKey(model.Type) == false)
-                    modelsByType.Add(model.Type, new List<IPromoModel>());
-                modelsByType[model.Type].Add(model);
-            }
-
-            _promoRows = new List<PromoRowUI>();
-            foreach (var pair in modelsByType)
-            {
-                PromoSorter.SortByRarity(pair.Value);
-                var row = GetRow();
-                row.SetLabel(pair.Key.ToString());
-                row.SetItems(pair.Value, _moneyUI);
-                _promoRows.Add(row);
-            }
+            var row = GetRow();
+            row.SetLabel(label);
+            row.SetItems(model, _moneyUI);
+            _promoRows.Add(row);
         }
 
         public void SetMoney(float amount)

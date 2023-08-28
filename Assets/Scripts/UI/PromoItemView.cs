@@ -23,7 +23,6 @@ namespace RedPanda.Project.UI
         private PromoItemPresenter _presenter;
         private IPromoIconService _iconService;
         private IMoneyUI _moneyUI;
-        private IUserService _userService;
         
         
         public void SetMoneyUI(IMoneyUI moneyUI)
@@ -34,7 +33,6 @@ namespace RedPanda.Project.UI
         public void SetModelView(IPromoModel model)
         {
             _iconService = Container.Locate<IPromoIconService>();
-            _userService = Container.Locate<IUserService>();
             _presenter = new PromoItemPresenter(Container, model, this);
             SetIcon(model.GetIcon());
             SetPrice(model.Cost);
@@ -66,13 +64,17 @@ namespace RedPanda.Project.UI
 
         public void PlayPurchased()
         {
-            _moneyUI.UpdateCount(_userService.Currency);
             ScalePurchased();
         }
 
         public void PlayNotPurchased()
         {
             ScaleNotPurchased();
+        }
+
+        public void UpdateMoney(float amount)
+        {
+            _moneyUI.UpdateAmount(amount);
         }
 
         private void OnPurchaseButton()

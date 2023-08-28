@@ -11,7 +11,7 @@ namespace RedPanda.Project.Presenters
         private IExportLocatorScope _container;
         private IPromoItemView _view;
         private IPromoModel _model;
-        private IUserService _service;
+        private IUserService _userService;
         
         
         public PromoItemPresenter(IExportLocatorScope container, IPromoModel model, IPromoItemView view)
@@ -19,20 +19,21 @@ namespace RedPanda.Project.Presenters
             _container = container;
             _model = model;
             _view = view;
-            _service = _container.Locate<IUserService>();
+            _userService = _container.Locate<IUserService>();
         }
 
         public void TryPurchase()
         {
-            if (_service.HasCurrency(_model.Cost))
+            if (_userService.HasCurrency(_model.Cost))
             {
-                _service.ReduceCurrency(_model.Cost);
+                _userService.ReduceCurrency(_model.Cost);
                 _view.PlayPurchased();
+                _view.UpdateMoney(_userService.Currency);
                 CLog.LogWHeader("PromoItem", $"Purchased item: {_model.Title}", "g", "w");
                 return;
             }
             _view.PlayNotPurchased();
-            CLog.LogWHeader("PromoItem", $"Error. Not enough money. Cost {_model.Cost}", "r", "w");
+            CLog.LogWHeader("PromoItem ERROR", $"Not enough money. Cost {_model.Cost}", "r", "w");
         }
         
     }

@@ -2,7 +2,8 @@
 {
     public interface IPromoItemView
     {
-        public void PlayPurchased();
-        public void PlayNotPurchased();
+        void PlayPurchased();
+        void PlayNotPurchased();
+        void UpdateMoney(float amount);
     }
 }
